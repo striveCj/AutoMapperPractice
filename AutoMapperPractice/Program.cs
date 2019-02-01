@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapperPractice.Model.User;
+using AutoMapperPractice.Model.Address;
 
 namespace AutoMapperPractice
 {
@@ -23,8 +25,9 @@ namespace AutoMapperPractice
 
             #region 中级方法调用
             //继承映射
-            InheritanceMap();
-
+            //InheritanceMap();
+            //复合映射
+            MuiMap();
 
             #endregion
 
@@ -90,7 +93,26 @@ namespace AutoMapperPractice
             Console.WriteLine($"姓名{userDto.Name}年龄{userDto.Age}编号{userDto.Id}创建时间{userDto.CreatedTime}修改时间{userDto.ModifiedTime}");
             Console.ReadKey();
         }
+        //复合映射（如果不配置不会映射实体中导航属性）
+        public static void MuiMap()
+        {
+            var author = new AuthorModel
+            {
+                Id=1,
+                FirstName="chen",
+                LastName="jie",
+                Address=new Address()
+                {
+                    City="深圳",
+                    State="1",
+                    Country="中国"
+                }
+            };
+            Mapper.Initialize(cfg=>cfg.CreateMap<AuthorModel,AuthorDTO>());
+            var authorDTO = Mapper.Map<AuthorModel, AuthorDTO>(author);
 
+            Console.ReadKey();
+        }
 
         #endregion
 
