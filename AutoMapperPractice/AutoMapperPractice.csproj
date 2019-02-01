@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Address\Address.cs" />
+    <Compile Include="Model\Address\AuthorDTO.cs" />
+    <Compile Include="Model\Address\AuthorModel.cs" />
     <Compile Include="Model\User\User.cs" />
     <Compile Include="Model\User\UserDto.cs" />
     <Compile Include="Program.cs" />
