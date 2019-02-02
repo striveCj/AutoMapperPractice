@@ -56,6 +56,9 @@
     <Compile Include="Model\Address\AuthorDTO.cs" />
     <Compile Include="Model\Address\AuthorModel.cs" />
     <Compile Include="Model\Basics\Base.cs" />
+    <Compile Include="Model\Customer\Company.cs" />
+    <Compile Include="Model\Customer\Customer.cs" />
+    <Compile Include="Model\Customer\CustomerDTO.cs" />
     <Compile Include="Model\User\BasicsUser.cs" />
     <Compile Include="Model\User\BasicsUserDto.cs" />
     <Compile Include="Model\User\User.cs" />

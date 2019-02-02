@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapperPractice.Model.User;
 using AutoMapperPractice.Model.Address;
+using AutoMapperPractice.Model.Customer;
 
 namespace AutoMapperPractice
 {
@@ -26,8 +27,10 @@ namespace AutoMapperPractice
             #region 中级方法调用
             //继承映射
             //InheritanceMap();
-            //复合映射
-            MuiMap();
+            //扁平映射
+            //MuiMap();
+            //映射规则
+            BpMap();
 
             #endregion
 
@@ -93,7 +96,7 @@ namespace AutoMapperPractice
             Console.WriteLine($"姓名{userDto.Name}年龄{userDto.Age}编号{userDto.Id}创建时间{userDto.CreatedTime}修改时间{userDto.ModifiedTime}");
             Console.ReadKey();
         }
-        //复合映射（如果不配置不会映射实体中导航属性）
+        //AutoMapper支持从映射源到映射目标的扁平化。
         public static void MuiMap()
         {
             var author = new AuthorModel
@@ -108,9 +111,29 @@ namespace AutoMapperPractice
                     Country="中国"
                 }
             };
-            Mapper.Initialize(cfg=>cfg.CreateMap<AuthorModel,AuthorDTO>());
+            Mapper.Initialize(cfg=>cfg.CreateMap<AuthorModel,AuthorDTO>()
+                .ForMember(d=>d.City,o=>o.MapFrom(s=>s.Address.City))
+                .ForMember(d=>d.State,o=>o.MapFrom(s=>s.Address.State))
+                .ForMember(d=>d.Country,o=>o.MapFrom(s=>s.Address.Country))
+            .ForMember(d=>d.Id,o=>o.Ignore()));//AutoMapper中有Ignore方法来忽略映射，如下代码片段将忽略对属性Id的映射
+
             var authorDTO = Mapper.Map<AuthorModel, AuthorDTO>(author);
 
+            Console.ReadKey();
+        }
+        //AutoMapper映射规则
+        public static void BpMap()
+        {
+            var customer = new Customer
+            {
+                Company = new Company
+                {
+                    Name = "腾讯"
+                }
+            };
+            Mapper.Initialize(cfg=>cfg.CreateMap<Customer,CustomerDTO>());
+            var customerDTO = Mapper.Map<Customer, CustomerDTO>(customer);
+            Console.WriteLine(customerDTO.CompanyName);
             Console.ReadKey();
         }
 
