@@ -8,6 +8,8 @@ using AutoMapper;
 using AutoMapperPractice.Model.User;
 using AutoMapperPractice.Model.Address;
 using AutoMapperPractice.Model.Customer;
+using AutoMapperPractice.Model.Order;
+using CustomerDTO = AutoMapperPractice.Model.Customer.CustomerDTO;
 
 namespace AutoMapperPractice
 {
@@ -30,7 +32,9 @@ namespace AutoMapperPractice
             //扁平映射
             //MuiMap();
             //映射规则
-            BpMap();
+            //BpMap();
+            //集合映射
+            ListMap();
 
             #endregion
 
@@ -122,6 +126,7 @@ namespace AutoMapperPractice
             Console.ReadKey();
         }
         //AutoMapper映射规则
+        //如果扁平化映射源类，若想AutoMapper依然能够自动映射，那么映射目标类中的属性必须是映射源中复杂属性名称加上复杂属性中的属性名称才行，因为AutoMapper会深度搜索目标类，直到找到匹配的属性为止。
         public static void BpMap()
         {
             var customer = new Customer
@@ -136,7 +141,31 @@ namespace AutoMapperPractice
             Console.WriteLine(customerDTO.CompanyName);
             Console.ReadKey();
         }
+        //集合映射
+        public static void ListMap()
+        {
+            var customer = new CustomerOrder
+            {
+                Id = 1,
+                Name = "chenjie",
+                Orders = new List<Order>
+                {
+                    new Order
+                    {
+                        Id=1,
+                        TotalFee = 10,
+                        TradeNo = "20172021690326"
+                    }
+                }
+            };
 
+            Mapper.Initialize(cfg=>cfg.CreateMap<CustomerOrder,CustomerOrderDTO>()
+            .ForMember(d=>d.OrderDtos,o=>o.MapFrom(s=>s.Orders)));
+
+            var customerDTO = Mapper.Map<CustomerOrder, CustomerOrderDTO>(customer);
+
+            Console.ReadKey();
+        }
         #endregion
 
 
