@@ -59,6 +59,8 @@
     <Compile Include="Model\Customer\Company.cs" />
     <Compile Include="Model\Customer\Customer.cs" />
     <Compile Include="Model\Customer\CustomerDTO.cs" />
+    <Compile Include="Model\Customer\CustomerVip.cs" />
+    <Compile Include="Model\Customer\CustomerVipDTO.cs" />
     <Compile Include="Model\Order\CustomerOrderDTO.cs" />
     <Compile Include="Model\Order\CustomerOrder.cs" />
     <Compile Include="Model\Order\Order.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Model\User\UserLowercase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resolver\VIPResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

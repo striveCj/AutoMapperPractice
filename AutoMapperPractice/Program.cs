@@ -9,6 +9,7 @@ using AutoMapperPractice.Model.User;
 using AutoMapperPractice.Model.Address;
 using AutoMapperPractice.Model.Customer;
 using AutoMapperPractice.Model.Order;
+using AutoMapperPractice.Resolver;
 using CustomerDTO = AutoMapperPractice.Model.Customer.CustomerDTO;
 
 namespace AutoMapperPractice
@@ -34,7 +35,14 @@ namespace AutoMapperPractice
             //映射规则
             //BpMap();
             //集合映射
-            ListMap();
+            //ListMap();
+
+            #endregion
+
+            #region 高级方法调用
+            //自定义配置
+            ConfigMap();
+
 
             #endregion
 
@@ -168,6 +176,23 @@ namespace AutoMapperPractice
         }
         #endregion
 
+        #region 高级使用方法
+        /// <summary>
+        /// 自定义配置
+        /// </summary>
+        public static void ConfigMap()
+        {
+            var customer = new CustomerVip
+            {
+                VIP = true
+            };
+            Mapper.Initialize(cfg=>cfg.CreateMap<CustomerVip,CustomerVipDTO>()
+            .ForMember(cv=>cv.VIP,m=>m.ResolveUsing<VIPResolver>()));
+            var customerDto = Mapper.Map<CustomerVip, CustomerVipDTO>(customer);
 
+        }
+       
+
+        #endregion
     }
 }
