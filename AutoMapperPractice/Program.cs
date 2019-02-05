@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -41,8 +43,9 @@ namespace AutoMapperPractice
 
             #region 高级方法调用
             //自定义配置
-            ConfigMap();
-
+            //ConfigMap();
+            //动态配置
+            DynamicMap();
 
             #endregion
 
@@ -191,7 +194,18 @@ namespace AutoMapperPractice
             var customerDto = Mapper.Map<CustomerVip, CustomerVipDTO>(customer);
 
         }
-       
+        /// <summary>
+        /// 动态映射
+        /// </summary>
+        public static void DynamicMap()
+        {
+            dynamic customer=new ExpandoObject();
+            customer.Id = 5;
+            customer.Name = "Chenjie";
+            Mapper.Initialize(cfg=> {});
+            var result = Mapper.Map<CustomerDynamic>(customer);
+            dynamic foo2 = Mapper.Map<ExpandoObject>(result);
+        }
 
         #endregion
     }

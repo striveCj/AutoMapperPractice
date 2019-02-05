@@ -59,6 +59,7 @@
     <Compile Include="Model\Customer\Company.cs" />
     <Compile Include="Model\Customer\Customer.cs" />
     <Compile Include="Model\Customer\CustomerDTO.cs" />
+    <Compile Include="Model\Customer\CustomerDynamic.cs" />
     <Compile Include="Model\Customer\CustomerVip.cs" />
     <Compile Include="Model\Customer\CustomerVipDTO.cs" />
     <Compile Include="Model\Order\CustomerOrderDTO.cs" />
