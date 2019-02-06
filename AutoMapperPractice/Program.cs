@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapperPractice.Converter;
 using AutoMapperPractice.Model.User;
 using AutoMapperPractice.Model.Address;
 using AutoMapperPractice.Model.Customer;
@@ -45,7 +46,9 @@ namespace AutoMapperPractice
             //自定义配置
             //ConfigMap();
             //动态配置
-            DynamicMap();
+            //DynamicMap();
+            //类型转换
+            TypeMap();
 
             #endregion
 
@@ -205,6 +208,25 @@ namespace AutoMapperPractice
             Mapper.Initialize(cfg=> {});
             var result = Mapper.Map<CustomerDynamic>(customer);
             dynamic foo2 = Mapper.Map<ExpandoObject>(result);
+        }
+        /// <summary>
+        /// 类型转换
+        /// </summary>
+        public static void TypeMap()
+        {
+            var customer = new CustomerVip
+            {
+                VIP = true
+            };
+            //Mapper.Initialize(cfg => cfg.CreateMap<CustomerVip, CustomerVipDTO>()
+            //    .ConvertUsing(s=>new CustomerVipDTO
+            //    {
+            //        VIP = s.VIP?"y":"n"
+            //    }));
+            //var customerDto = Mapper.Map<CustomerVip, CustomerVipDTO>(customer);
+            Mapper.Initialize(cfg => cfg.CreateMap<CustomerVip, CustomerVipDTO>()
+                .ConvertUsing(new CustomTypeConverter()));
+            var customerDtp2= Mapper.Map<CustomerVip, CustomerVipDTO>(customer);
         }
 
         #endregion

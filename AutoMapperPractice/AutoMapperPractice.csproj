@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\CustomTypeConverter.cs" />
     <Compile Include="Model\Address\Address.cs" />
     <Compile Include="Model\Address\AuthorDTO.cs" />
     <Compile Include="Model\Address\AuthorModel.cs" />
