@@ -48,7 +48,7 @@ namespace AutoMapperPractice
             //动态配置
             //DynamicMap();
             //类型转换
-            TypeMap();
+            //TypeMap();
 
             #endregion
 
