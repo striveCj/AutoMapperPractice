@@ -11,7 +11,9 @@ using AutoMapperPractice.Converter;
 using AutoMapperPractice.Model.User;
 using AutoMapperPractice.Model.Address;
 using AutoMapperPractice.Model.Customer;
+using AutoMapperPractice.Model.Demo;
 using AutoMapperPractice.Model.Order;
+using AutoMapperPractice.Profiles;
 using AutoMapperPractice.Resolver;
 using CustomerDTO = AutoMapperPractice.Model.Customer.CustomerDTO;
 
@@ -49,6 +51,12 @@ namespace AutoMapperPractice
             //DynamicMap();
             //类型转换
             //TypeMap();
+
+            #endregion
+
+            #region Profile用法
+
+            ProfileMap();
 
             #endregion
 
@@ -228,6 +236,22 @@ namespace AutoMapperPractice
                 .ConvertUsing(new CustomTypeConverter()));
             var customerDtp2= Mapper.Map<CustomerVip, CustomerVipDTO>(customer);
         }
+
+        #endregion
+
+        #region Profile用法
+
+        public static void ProfileMap()
+        {
+            var sou = new Source
+            {
+                AnotherValue = "1",
+                SomeValue = 1
+            };
+            Mapper.Initialize(x => x.AddProfile<SourceProfile>());
+            var des = Mapper.Map<Destination>(sou);
+        }
+        
 
         #endregion
     }
