@@ -8,8 +8,8 @@ namespace AutoMapperPractice.Model.Demo
 {
    public class Source
     {
-        public int SomeValue { get; set; }
-
-        public string AnotherValue { get; set; }
+        public int Id { get; set; }
+          public string Name { get; set; }
+          public int Age { get; set; }
     }
 }

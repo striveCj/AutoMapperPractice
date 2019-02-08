@@ -13,7 +13,7 @@ using AutoMapperPractice.Model.Address;
 using AutoMapperPractice.Model.Customer;
 using AutoMapperPractice.Model.Demo;
 using AutoMapperPractice.Model.Order;
-using AutoMapperPractice.Profiles;
+using AutoMapperPractice.Profiless;
 using AutoMapperPractice.Resolver;
 using CustomerDTO = AutoMapperPractice.Model.Customer.CustomerDTO;
 
@@ -243,12 +243,15 @@ namespace AutoMapperPractice
 
         public static void ProfileMap()
         {
+            Mapper.Initialize(x => x.AddProfile<SourceProfile>());
             var sou = new Source
             {
-                AnotherValue = "1",
-                SomeValue = 1
+                Id = 1,
+                Name ="ChenJie",
+                Age = 20
+
             };
-            Mapper.Initialize(x => x.AddProfile<SourceProfile>());
+            
             var des = Mapper.Map<Destination>(sou);
         }
         

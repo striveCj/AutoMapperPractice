@@ -8,7 +8,7 @@ namespace AutoMapperPractice.Model.Demo
 {
     public class Destination
     {
-        public int SomeValue { get; set; }
-        public string AnotherValue { get; set; }
+        public string Name2 { get; set; }
+        public int Age { get; set; }
     }
 }
