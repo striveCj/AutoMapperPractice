@@ -46,7 +46,7 @@ namespace AutoMapperPractice
 
             #region 高级方法调用
             //自定义配置
-            //ConfigMap();
+            ConfigMap();
             //动态配置
             //DynamicMap();
             //类型转换
@@ -56,7 +56,7 @@ namespace AutoMapperPractice
 
             #region Profile用法
 
-            ProfileMap();
+            //ProfileMap();
 
             #endregion
 
@@ -201,7 +201,7 @@ namespace AutoMapperPractice
                 VIP = true
             };
             Mapper.Initialize(cfg=>cfg.CreateMap<CustomerVip,CustomerVipDTO>()
-            .ForMember(cv=>cv.VIP,m=>m.ResolveUsing<VIPResolver>()));
+            .ForMember(cv=>cv.VIP,m=>m.MapFrom<VIPResolver>()));
             var customerDto = Mapper.Map<CustomerVip, CustomerVipDTO>(customer);
 
         }
