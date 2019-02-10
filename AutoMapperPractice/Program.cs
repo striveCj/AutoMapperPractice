@@ -10,6 +10,7 @@ using AutoMapper;
 using AutoMapperPractice.Converter;
 using AutoMapperPractice.Model.User;
 using AutoMapperPractice.Model.Address;
+using AutoMapperPractice.Model.Book;
 using AutoMapperPractice.Model.Customer;
 using AutoMapperPractice.Model.Demo;
 using AutoMapperPractice.Model.Order;
@@ -30,9 +31,13 @@ namespace AutoMapperPractice
             //NullMap();
             //当映射源大小写有差异时
             //LowercaseMap();
+            //复杂映射
+            OptionMap();
+
             #endregion
 
             #region 中级方法调用
+
             //继承映射
             //InheritanceMap();
             //扁平映射
@@ -45,8 +50,9 @@ namespace AutoMapperPractice
             #endregion
 
             #region 高级方法调用
+
             //自定义配置
-            ConfigMap();
+            //ConfigMap();
             //动态配置
             //DynamicMap();
             //类型转换
@@ -103,6 +109,26 @@ namespace AutoMapperPractice
 
         }
 
+        /// <summary>
+        /// 复杂自定义配置
+        /// </summary>
+        public static void OptionMap()
+        {
+            var books = new Book
+            {
+                Author = new Author
+                {
+                    FirstName = "陈",
+                    LastName = "杰"
+                },
+                Title = "你的名字"
+            };
+
+            AutoMapper.Mapper.Initialize(cfg=>cfg.CreateMap<Book,BookViewModel>().ForMember(dest=>dest.Author,opts=>opts.MapFrom(src=>string.Format($"{src.Author.FirstName}{src.Author.LastName}"))));
+
+            var bookDto = Mapper.Map<BookViewModel>(books);
+            Console.WriteLine(bookDto.Title+bookDto.Author);
+        }
         #endregion
 
         #region 中级使用方法
