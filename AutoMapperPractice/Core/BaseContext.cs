@@ -12,7 +12,7 @@ namespace AutoMapperPractice.Core
     {
         public BaseContext():base("name=Default")
         {
-            
+            Database.SetInitializer<BaseContext>(null);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
