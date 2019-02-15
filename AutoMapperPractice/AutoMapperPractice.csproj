@@ -70,9 +70,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AutoMapAttribute.cs" />
     <Compile Include="Attributes\AutoMapAttributeBase.cs" />
     <Compile Include="Converter\CustomTypeConverter.cs" />
     <Compile Include="Core\BaseContext.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Map\EmployeeMap.cs" />
     <Compile Include="Model\Address\Address.cs" />
     <Compile Include="Model\Address\AuthorDTO.cs" />
