@@ -70,8 +70,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AppDomainTypeFinder.cs" />
     <Compile Include="Attributes\AutoMapAttribute.cs" />
     <Compile Include="Attributes\AutoMapAttributeBase.cs" />
+    <Compile Include="Attributes\AutoMapperModule.cs" />
+    <Compile Include="Attributes\ITypeFinder.cs" />
     <Compile Include="Converter\CustomTypeConverter.cs" />
     <Compile Include="Core\BaseContext.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />

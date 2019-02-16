@@ -9,11 +9,11 @@ namespace AutoMapperPractice.Attributes
     /// </summary>
     public abstract class AutoMapAttributeBase:Attribute
     {
-        public Type[] TargeTypes { get; private set; }
+        public Type[] TargetTypes { get; private set; }
 
         protected AutoMapAttributeBase(params Type[] targetTypes)
         {
-            TargeTypes = targetTypes;
+            TargetTypes = targetTypes;
         }
 
         public abstract void CreateMap(IMapperConfigurationExpression configuration, Type type);
