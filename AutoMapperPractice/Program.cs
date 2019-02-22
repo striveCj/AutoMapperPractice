@@ -10,6 +10,7 @@ using AutoMapper;
 using AutoMapperPractice.Converter;
 using AutoMapperPractice.Model.User;
 using AutoMapperPractice.Model.Address;
+using AutoMapperPractice.Model.AttributesModel;
 using AutoMapperPractice.Model.Book;
 using AutoMapperPractice.Model.Customer;
 using AutoMapperPractice.Model.Demo;
@@ -63,6 +64,13 @@ namespace AutoMapperPractice
             #region Profile用法
 
             //ProfileMap();
+
+            #endregion
+
+            #region 特性用法
+
+            AttributeMap();
+
 
             #endregion
 
@@ -280,7 +288,25 @@ namespace AutoMapperPractice
             
             var des = Mapper.Map<Destination>(sou);
         }
-        
+
+
+        #endregion
+
+        #region 特性用法
+
+        public static void AttributeMap()
+        {
+            MenuEntity entity = new MenuEntity
+            {
+                Id = 1,
+                MenuCode = "01",
+                MenuName = "用户管理",
+                ParentCode = "0",
+                ParentId = 0
+            };
+            var dto = Mapper.Map<MenuDto>(entity);
+
+        }
 
         #endregion
     }
